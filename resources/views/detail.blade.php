@@ -14,18 +14,24 @@
         @endif
 
         <p class="mt-5">{{$article->text_article}}</p>
-
+        @auth
+        @if ($article->user_id == Auth::id())
+            
         <a href="{{route('edit', ['article' => $article->id])}}" class="btn btn-danger">Modifica Articolo</a>
+       
+        <div class="row text-center mt-3">
+            <form action="{{route('delete', compact('article'))}}" method="POST">
+                @csrf
+                @method('DELETE')
+    
+                <button  class="btn btn-danger" type="submit">Elimina l'articolo</button>
+            </form>
+        </div>
+        
+        @endif
+        @endauth
        
     </div>
 
-    <div class="row text-center mt-3">
-        <form action="{{route('delete', compact('article'))}}" method="POST">
-            @csrf
-            @method('DELETE')
-
-            <button  class="btn btn-danger" type="submit">Elimina l'articolo</button>
-        </form>
-    </div>
 
 </x-layout>

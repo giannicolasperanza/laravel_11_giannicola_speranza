@@ -12,18 +12,33 @@
         <li class="nav-item">
           <a class="nav-link" href="{{route('index')}}">Articoli</a>
         </li>
+        
+        @auth
         <li class="nav-item">
           <a class="nav-link" href="{{route('create')}}">Create</a>
         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
-        </li>
+        @endauth
+         
+         @guest
+          <li class="nav-item">
+              <a class="nav-link" href="{{route('login')}}">Login </a>
+            </li>
+  
+          <li class="nav-item">
+              <a class="nav-link" href="{{route('register')}}">Registrati </a>
+            </li>
+          @endguest
+       
+
+        @auth            
+            <li><form 
+              class="nav-item" 
+              method="POST"
+              action="{{route('logout')}}">
+              @csrf
+              <button type="submit">Logout</button>
+              </form></li>
+          @endauth
 
 
       </ul>

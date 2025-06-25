@@ -14,6 +14,7 @@
       desArticle="{{$article['text_article']}}"
       idArticle="{{$article['id']}}"
       imgArticle="{{$article['img']}}"
+      author="{{ $article->user->name }}"
 >
 
 

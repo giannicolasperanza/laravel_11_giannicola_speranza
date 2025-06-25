@@ -10,6 +10,7 @@
           </a>
   @endif
           <div class="card-body">
+            <p> Creato da: {{$author}}</p>
             <h4 class="card-text">{{$titArticle}}</h4>          
             <p class="card-text">{{$desArticle}}</p>
             <a href="{{route('detail', ['article' => $idArticle])}}" class="btn btn-danger">Scopri di più</a>

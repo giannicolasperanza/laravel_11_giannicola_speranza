@@ -6,9 +6,19 @@ use App\Http\Requests\ArticleEditRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Auth;
+
+
+
 
 class ArticleController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -41,7 +51,8 @@ class ArticleController extends Controller
         $article=Article::create([
         'title'=> $request->title,
         'text_article'=> $request->text_article,
-        'img' => $img
+        'img' => $img,
+        'user_id'=>Auth::user()->id
 
         ]);
         
